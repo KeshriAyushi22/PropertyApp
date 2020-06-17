@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { KeyboardBackspace, PhotoLibrary } from "@material-ui/icons";
 import { Typography, Button, TextField, Link } from '@material-ui/core';
-import AutoComplete from "./AutoComplete"
+import AutoCompleteSearchBox from "./AutoCompleteSearchBox";
 
 export default class SecondPage extends Component {
     render() {
@@ -35,7 +35,7 @@ export default class SecondPage extends Component {
                 </div>
                 <div>
                     <div style={{margin: "15px", marginTop: "50px"}}>
-                        <AutoComplete/>
+                        <AutoCompleteSearchBox address="cleveland, oh" />
                     </div>
                     <div style={{margin: "15px", marginTop: "50px"}}>
                         <TextField
