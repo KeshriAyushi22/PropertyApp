@@ -8,6 +8,8 @@
   width: 100%;
   background-color: red;
   height:80px;
+  display: flex;
+  
 }
 
 .MuiGrid-root .MuiGrid-grid-sm-12 {

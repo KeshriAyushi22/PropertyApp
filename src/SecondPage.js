@@ -9,9 +9,9 @@ export default class SecondPage extends Component {
         return (
             <div>
                 <div className="header-2">
-                    <KeyboardBackspace fontSize="large" color="action" style={{ verticalAlign: 'center' }} />
+                    <KeyboardBackspace fontSize="large" color="action" style={{ verticalAlign: 'center',color:'white' }} />
                     <Typography
-                        style={{ textAlign: "center", width: "100%" }}
+                        style={{ textAlign: "center", width: "fit-content" ,marginLeft: "auto", marginRight: "auto",color:'white'}}
                         variant="h5" color="textSecondary">
                         <b>LOGO</b>
                     </Typography>
