@@ -29,10 +29,12 @@ export default class FirstPage extends Component {
                 <div className="googleMap">
                 <GoogleMap/>
                 </div>
+                <div style={{ marginTop: "420px",marginLeft: "auto",marginRight:"auto",width:"200px"}}>
                 <Fab variant="extended" href="/sp" 
-                    style={{ backgroundColor: "red", color: 'white', fontSize: "12px",marginTop: "420px",marginLeft: "auto",marginRight:"auto",width:"200px"}}>
+                    style={{ backgroundColor: "red", color: 'white', fontSize: "12px"}}>
                     POST YOUR AD
                  </Fab>
+                 </div>
             </div>
         )
     }
