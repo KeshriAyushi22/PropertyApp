@@ -16,11 +16,15 @@ export default class SecondPage extends Component {
                         <b>LOGO</b>
                     </Typography>
                 </div>
-                <div style={{ width: "100%" }}>
+                <div style={{ width: "100%" , display:"grid"}}>
                     
-                    <input id="myInput" type="file" ref={(ref) => this.myInput = ref} style={{ display: 'none' }} />
+                    <input id="myInput" label ="my selected image" type="file" ref={(ref) => this.myInput = ref}
+                     style={{ display: 'none' ,width: "187px",marginLeft: "auto",marginRight: "auto",marginTop: "20px"}} />
                     <PhotoLibrary
-                        onClick={(e) => this.myInput.click()}
+                        onClick={(e) => {
+                            this.myInput.click()
+                            document.getElementById("myInput").style.display="grid"
+                        }}
                         fontSize="large" color="action"
                         style={{ marginLeft: "auto", marginRight: "auto", width: "320px", marginTop: "20px", cursor:"pointer" }} />
 
