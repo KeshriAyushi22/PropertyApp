@@ -40,7 +40,7 @@ export default function AutoComplete() {
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyBuOVOueQPiDrHZFiVG1FWZwNsttL1Virw&libraries=places',
+        'https://maps.googleapis.com/maps/api/js?key=KEY&libraries=places',
         document.querySelector('head'),
         'google-maps',
       );
