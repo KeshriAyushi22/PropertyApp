@@ -9,23 +9,21 @@ export default class SecondPage extends Component {
         return (
             <div>
                 <div className="header-2">
-                    <KeyboardBackspace fontSize="large" color="action" style={{ verticalAlign: 'center',color:'white' }} />
+                    <KeyboardBackspace fontSize="large" color="action" style={{ verticalAlign: 'center', color: 'white' }} />
                     <Typography
-                        style={{ textAlign: "center", width: "fit-content" ,marginLeft: "auto", marginRight: "auto",color:'white'}}
+                        style={{ textAlign: "center", width: "fit-content", marginLeft: "auto", marginRight: "auto", color: 'white' }}
                         variant="h5" color="textSecondary">
                         <b>LOGO</b>
                     </Typography>
                 </div>
                 <div style={{ width: "100%" }}>
-                    <Link
-                        onClick={() => {
-                            console.log("clicked")
-                        }}
-                    >
-                        <PhotoLibrary
-                            fontSize="large" color="action"
-                            style={{ marginLeft: "auto", marginRight: "auto", width: "320px", marginTop: "20px" }} />
-                    </Link>
+                    
+                    <input id="myInput" type="file" ref={(ref) => this.myInput = ref} style={{ display: 'none' }} />
+                    <PhotoLibrary
+                        onClick={(e) => this.myInput.click()}
+                        fontSize="large" color="action"
+                        style={{ marginLeft: "auto", marginRight: "auto", width: "320px", marginTop: "20px", cursor:"pointer" }} />
+
                     <Typography
                         style={{ textAlign: "center", width: "100%" }}
                         variant="body2" color="textSecondary">
@@ -33,9 +31,9 @@ export default class SecondPage extends Component {
                     </Typography>
 
                 </div>
-                <Grid container  spacing={1} style={{ height: "450px", marginLeft:"20px" ,marginTop:"30px"}}>
+                <Grid container spacing={1} style={{ height: "450px", marginLeft: "20px", marginTop: "30px" }}>
                     <Grid items sm={12}>
-                    <AutoComplete/>
+                        <AutoComplete />
                     </Grid>
                     <Grid items sm={12}>
                         <TextField
@@ -67,7 +65,7 @@ export default class SecondPage extends Component {
                             style={{ verticalAlign: 'center', marginLeft: '9px', textAlign: "center" }}
                             color="primary"
                             type="button"
-                            onClick={()=>window.location.href="/"}
+                            onClick={() => window.location.href = "/"}
                         >
                             POST
 		                </Button>

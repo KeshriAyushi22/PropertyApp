@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
-import './App.css'
+import './App.css';
+
 
 function loadScript(src, position, id) {
   if (!position) {
@@ -40,7 +41,7 @@ export default function AutoComplete() {
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        'https://maps.googleapis.com/maps/api/js?key=KEY&libraries=places',
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCIhrd4pSUGkVbBXJKKypkzbMQ1GDnQ-58&libraries=places',
         document.querySelector('head'),
         'google-maps',
       );
