@@ -1,28 +1,59 @@
-import React, {Component} from 'react'
-import {GoogleApiWrapper, Map} from 'google-maps-react';
+/* global google */
+import React, { Component } from "react";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 
-const mapStyles = {
-    width: '100%',
-    height: '100%'
-  };
-export class GoogleMap extends Component {
-    
-    render() {
+const MarkersList = props => {
+  const { locations, ...markerProps } = props;
+  return (
+    <span>
+      {locations.map((location, i) => {
         return (
-            <div>
-           <Map
-        google={this.props.google}
-        zoom={14}
-        style={mapStyles}
-        initialCenter={{
-         lat: -1.2884,
-         lng: 36.8233
-        }}
-      />
-            </div>
-        )
-    }
+          <Marker
+            key={i}
+            {...markerProps}
+            position={{ lat: location.lat(), lng: location.lng() }}
+          />
+        );
+      })}
+    </span>
+  );
+};
+
+class GoogleMapContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      locations: []
+    };
+    this.handleMapClick = this.handleMapClick.bind(this);
+  }
+
+  handleMapClick = (ref, map, ev) => {
+    const location = ev.latLng;
+    this.setState(prevState => ({
+      locations: [...prevState.locations, location]
+    }));
+    map.panTo(location);
+  };
+
+  render() {
+    return (
+      <div className="map-container">
+        <Map
+          google={this.props.google}
+          className={"map"}
+          zoom={this.props.zoom}
+          initialCenter={this.props.center}
+          onClick={this.handleMapClick}
+        >
+         <MarkersList locations={this.state.locations} icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" />
+        </Map>
+      </div>
+    );
+  }
 }
+
 export default GoogleApiWrapper({
-    apiKey:"AIzaSyCIhrd4pSUGkVbBXJKKypkzbMQ1GDnQ-58"
-  })(GoogleMap);
+  apiKey: "AIzaSyCIhrd4pSUGkVbBXJKKypkzbMQ1GDnQ-58",
+  libraries: []
+})(GoogleMapContainer);

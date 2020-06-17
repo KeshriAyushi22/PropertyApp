@@ -1,8 +1,7 @@
-import React, {Component} from 'react'
-import {ListAltRounded, MenuRounded} from "@material-ui/icons";
-import {Fab, TextField, Typography} from '@material-ui/core';
-import GoogleMap from "./GoogleMap"
-
+import React, { Component } from 'react'
+import { MenuRounded, ListAltRounded } from "@material-ui/icons";
+import { Typography, Button, TextField, Link, Grid, Fab } from '@material-ui/core';
+import GoogleMapContainer from "./GoogleMap"
 export default class FirstPage extends Component {
     render() {
         return (
@@ -28,11 +27,11 @@ export default class FirstPage extends Component {
                         />
                 </div>
                 <div className="googleMap">
-                <GoogleMap/>
+                <GoogleMapContainer center={{ lat: -1.2884, lng:36.8233 }} zoom={14} />
                 </div>
-                <div style={{ bottom: "22px",marginLeft: "auto",marginRight:"auto",width:"100%", position: 'fixed', 'justify-content': 'center'}}>
+                <div style={{ marginTop: "420px",marginLeft: "auto",marginRight:"auto",width:"fit-content"}}>
                 <Fab variant="extended" href="/sp" 
-                    style={{ backgroundColor: "red", color: 'white', fontSize: "12px", 'justify-content': 'center'}}>
+                    style={{ backgroundColor: "red", color: 'white', fontSize: "12px"}}>
                     POST YOUR AD
                  </Fab>
                  </div>

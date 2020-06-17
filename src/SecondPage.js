@@ -9,23 +9,25 @@ export default class SecondPage extends Component {
         return (
             <div>
                 <div className="header-2">
-                    <KeyboardBackspace fontSize="large" style={{ verticalAlign: 'center', color: "white" }} />
+                    <KeyboardBackspace fontSize="large" color="action" style={{ verticalAlign: 'center', color: 'white' }} />
                     <Typography
-                        style={{ textAlign: "center", width: "100%", color: "white" }}
-                        variant="h5">
-                        <b>LOGO</b><span style={{color: 'red'}}>......</span>
+                        style={{ textAlign: "center", width: "fit-content", marginLeft: "auto", marginRight: "auto", color: 'white' }}
+                        variant="h5" color="textSecondary">
+                        <b>LOGO</b>
                     </Typography>
                 </div>
-                <div style={{ width: "100%" }}>
-                    <Link
-                        onClick={() => {
-                            console.log("clicked")
+                <div style={{ width: "100%" , display:"grid"}}>
+                    
+                    <input id="myInput" label ="my selected image" type="file" ref={(ref) => this.myInput = ref}
+                     style={{ display: 'none' ,width: "187px",marginLeft: "auto",marginRight: "auto",marginTop: "20px"}} />
+                    <PhotoLibrary
+                        onClick={(e) => {
+                            this.myInput.click()
+                            document.getElementById("myInput").style.display="grid"
                         }}
-                    >
-                        <PhotoLibrary
-                            fontSize="large"
-                            style={{ marginLeft: "auto", marginRight: "auto", width: "100%", marginTop: "20px", color:"red" }} />
-                    </Link>
+                        fontSize="large" color="action"
+                        style={{ marginLeft: "auto", marginRight: "auto", width: "320px", marginTop: "20px", cursor:"pointer",color:"red" }} />
+
                     <Typography
                         style={{ textAlign: "center", width: "100%", color:"red" }}
                         variant="body2">
@@ -69,7 +71,7 @@ export default class SecondPage extends Component {
                             variant="contained"
                             style={{ verticalAlign: 'center', marginLeft: '9px', textAlign: "center", 'background-color': 'red', color: 'white' }}
                             type="button"
-                            onClick={()=>window.location.href="/"}
+                            onClick={() => window.location.href = "/"}
                         >
                             POST
                         </Button>
