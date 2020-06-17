@@ -113,7 +113,7 @@ export default function AutoComplete() {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Property Address" fullWidth />
+        <TextField {...params} label="Property Address" fullWidth placeholder="Canada Street 555" InputLabelProps={{ shrink: true }}/>
       )}
       renderOption={(option) => {
         const matches = option.structured_formatting.main_text_matched_substrings;

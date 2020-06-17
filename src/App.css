@@ -1,39 +1,50 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 
 
 .header-2{
-  width: 100%;
-  background-color: red;
-  height:80px;
-  display: flex;
-  
+    background-color: red;
+    height:34px;
+    display: flex;
+    padding: 10px;
 }
 
 .MuiGrid-root .MuiGrid-grid-sm-12 {
-height: 50px !important;
-width: 80% !important;
+    height: 50px !important;
+    width: 80% !important;
 }
 
- .MuiIconButton-root .MuiAutocomplete-popupIndicator{
-   display:none !important;
- }
+.MuiIconButton-root .MuiAutocomplete-popupIndicator{
+    display:none !important;
+}
 
- .MuiAutocomplete-root .MuiAutocomplete-hasClearIcon .MuiAutocomplete-hasPopupIcon{
-  width: 250px !important;
- }
+.MuiAutocomplete-root .MuiAutocomplete-hasClearIcon .MuiAutocomplete-hasPopupIcon{
+    width: 250px !important;
+}
 
 .MuiInputBase-input .MuiInput-input{
-  font-size:12px;
+    font-size:12px;
+}
+
+.MuiAutocomplete-root {
+    width: 100% !important;
+}
+
+.MuiInputLabel-root {
+    display: block !important;
+    font-size: 17px !important;
+    font-weight: bold !important;
+    color: black !important;
+    margin-top: -7px !important;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
