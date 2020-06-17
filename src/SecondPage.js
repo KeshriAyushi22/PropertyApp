@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { KeyboardBackspace, PhotoLibrary } from "@material-ui/icons";
-import { Typography, Button, TextField, Link, Grid, } from '@material-ui/core';
+import { Typography, Button, TextField, Link } from '@material-ui/core';
 import AutoComplete from "./AutoComplete"
 
 export default class SecondPage extends Component {
@@ -9,11 +9,11 @@ export default class SecondPage extends Component {
         return (
             <div>
                 <div className="header-2">
-                    <KeyboardBackspace fontSize="large" color="action" style={{ verticalAlign: 'center' }} />
+                    <KeyboardBackspace fontSize="large" style={{ verticalAlign: 'center', color: "white" }} />
                     <Typography
-                        style={{ textAlign: "center", width: "100%" }}
-                        variant="h5" color="textSecondary">
-                        <b>LOGO</b>
+                        style={{ textAlign: "center", width: "100%", color: "white" }}
+                        variant="h5">
+                        <b>LOGO</b><span style={{color: 'red'}}>......</span>
                     </Typography>
                 </div>
                 <div style={{ width: "100%" }}>
@@ -23,57 +23,58 @@ export default class SecondPage extends Component {
                         }}
                     >
                         <PhotoLibrary
-                            fontSize="large" color="action"
-                            style={{ marginLeft: "auto", marginRight: "auto", width: "320px", marginTop: "20px" }} />
+                            fontSize="large"
+                            style={{ marginLeft: "auto", marginRight: "auto", width: "100%", marginTop: "20px", color:"red" }} />
                     </Link>
                     <Typography
-                        style={{ textAlign: "center", width: "100%" }}
-                        variant="body2" color="textSecondary">
+                        style={{ textAlign: "center", width: "100%", color:"red" }}
+                        variant="body2">
                         <b>Add a Photo</b>
                     </Typography>
 
                 </div>
-                <Grid container  spacing={1} style={{ height: "450px", marginLeft:"20px" ,marginTop:"30px"}}>
-                    <Grid items sm={12}>
-                    <AutoComplete/>
-                    </Grid>
-                    <Grid items sm={12}>
+                <div>
+                    <div style={{margin: "15px", marginTop: "50px"}}>
+                        <AutoComplete/>
+                    </div>
+                    <div style={{margin: "15px", marginTop: "50px"}}>
                         <TextField
                             id="propTtile"
                             label="Property Title"
+                            placeholder="Your property title"
                             name="propTtile"
                             type="text"
-                            defaultValue="Your Property Tilte"
                             onChange={(event) => console.log(event.target.value)}
                             fullWidth
                             InputLabelProps={{ shrink: true }}
                         />
-                    </Grid>
-                    <Grid items sm={12}>
+                    </div>
+                    <div style={{margin: "15px", marginTop: "50px"}}>
                         <TextField
                             id="propdesc"
                             label="Describe More About Your Property"
+                            placeholder="Enter any notes here ..."
                             name="propdesc"
                             type="text"
-                            defaultValue="Enter Any Notes Here"
                             onChange={(event) => console.log(event.target.value)}
                             fullWidth
                             InputLabelProps={{ shrink: true }}
+                            multiline
+                            rows={2}
+                            rowsMax={4}
                         />
-                    </Grid>
-                    <Grid items sm={12}>
+                    </div>
+                    <div style={{margin: "15px", marginTop: "50px"}}>
                         <Button
                             variant="contained"
-                            style={{ verticalAlign: 'center', marginLeft: '9px', textAlign: "center" }}
-                            color="primary"
+                            style={{ verticalAlign: 'center', marginLeft: '9px', textAlign: "center", 'background-color': 'red', color: 'white' }}
                             type="button"
                             onClick={()=>window.location.href="/"}
                         >
                             POST
-		                </Button>
-                    </Grid>
-
-                </Grid>
+                        </Button>
+                    </div>
+                </div>
             </div>
         )
     }

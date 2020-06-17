@@ -40,7 +40,7 @@ export default function AutoComplete() {
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyBwRp1e12ec1vOTtGiA4fcCt2sCUS78UYc&libraries=places',
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCIhrd4pSUGkVbBXJKKypkzbMQ1GDnQ-58&libraries=places',
         document.querySelector('head'),
         'google-maps',
       );
@@ -112,7 +112,7 @@ export default function AutoComplete() {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Property Address" fullWidth />
+        <TextField {...params} label="Property Address" fullWidth placeholder="Canada Street 555" InputLabelProps={{ shrink: true }}/>
       )}
       renderOption={(option) => {
         const matches = option.structured_formatting.main_text_matched_substrings;
