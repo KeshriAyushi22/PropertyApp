@@ -85,7 +85,7 @@ export default class FirstPage extends Component {
                 </div>
                 <div style={{position: 'fixed', width: '100%', height: '50px', bottom: '20px'}}>
                 <div style={{ marginLeft: "auto",marginRight:"auto",width:"fit-content"}}>
-                    <Fab variant="extended" href="/sp"
+                    <Fab variant="extended" href="/home"
                         style={{ backgroundColor: "red", color: 'white', fontSize: "12px"}}>
                         POST YOUR AD
                      </Fab>

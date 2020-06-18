@@ -13,7 +13,22 @@ export default class SecondPage extends Component {
         };
     }
 
+    componentDidUpdate(prevProps) {
+        // console.log('ComponentDidUpdate');
+        // // console.log(this.state);
+        // // console.log(prevProps);
+        // // console.log(this.props);
+        // // // this.setState({context: this.props.context});
+        // // console.log(this.state);
+        // this.context = this.props.context;
+        // console.log(this.context);
+    }
+
     componentDidMount() {
+        this.context = this.state.context;
+        console.log(this.context);
+        localStorage.setItem('context', this.context);
+
         const refs = {};
 
         this.setState({
@@ -63,17 +78,10 @@ export default class SecondPage extends Component {
     };
 
     render() {
+        // console.log(this.state);
         const pls = this.state;
         return (
             <div>
-                <div className="header-2">
-                    <KeyboardBackspace fontSize="large" color="action" style={{ verticalAlign: 'center', color: 'white' }} />
-                    <Typography
-                        style={{ textAlign: "center", width: "fit-content", marginLeft: "auto", marginRight: "auto", color: 'white' }}
-                        variant="h5" color="textSecondary">
-                        <b>LOGO</b><span style={{color: 'red'}}>.....</span>
-                    </Typography>
-                </div>
                 <div style={{ width: "100%" , display:"grid"}}>
                     
                     <input id="myInput" label ="my selected image" type="file" ref={(ref) => this.myInput = ref}
@@ -146,9 +154,9 @@ export default class SecondPage extends Component {
                                 onClick={() => {
                                     console.log(pls.latlong);
                                     if (pls.latlong) {
-                                        var tempMarker = localStorage.getItem('markers') ? JSON.parse(localStorage.getItem('markers')) : [];
+                                        var tempMarker = localStorage.getItem(localStorage.getItem('context')) ? JSON.parse(localStorage.getItem(localStorage.getItem('context'))) : [];
                                         tempMarker.push(pls.latlong);
-                                        localStorage.setItem('markers', JSON.stringify(tempMarker));
+                                        localStorage.setItem(localStorage.getItem('context'), JSON.stringify(tempMarker));
                                     }
                                 }}
                             >

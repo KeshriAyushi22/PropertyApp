@@ -53,7 +53,7 @@ class GoogleMapContainer extends React.Component {
           center={this.props.latlong}
           onClick={this.handleMapClick}
         >
-         <MarkersList locations={JSON.parse(localStorage.getItem('markers')) ? JSON.parse(localStorage.getItem('markers')) : []} />
+         <MarkersList locations={JSON.parse(localStorage.getItem(localStorage.getItem('context'))) ? JSON.parse(localStorage.getItem(localStorage.getItem('context'))) : []} />
         </Map>
       </div>
     );

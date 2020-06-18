@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import SecondPage from "./SecondPage"
 import FirstPage from "./FirstPage"
+import ResponsiveDrawer from "./HomePage";
 
 export default class App extends React.Component {
     render() {
@@ -18,6 +19,11 @@ export default class App extends React.Component {
                     path="/"
                     exact
                     render={(props) => <FirstPage {...props} />}
+                />
+                <Route
+                    path="/home"
+                    exact
+                    render={() => <ResponsiveDrawer />}
                 />
             </BrowserRouter>
         )
