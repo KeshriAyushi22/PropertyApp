@@ -1,6 +1,6 @@
 /* global google */
-import React, { Component } from "react";
-import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import React from "react";
+import {GoogleApiWrapper, Map, Marker} from "google-maps-react";
 
 const MarkersList = props => {
   const { locations, ...markerProps } = props;
@@ -11,7 +11,7 @@ const MarkersList = props => {
           <Marker
             key={i}
             {...markerProps}
-            position={{ lat: location.lat(), lng: location.lng() }}
+            position={{ lat: location.lat, lng: location.lng }}
           />
         );
       })}
@@ -22,6 +22,7 @@ const MarkersList = props => {
 class GoogleMapContainer extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       locations: []
     };
@@ -29,11 +30,12 @@ class GoogleMapContainer extends React.Component {
   }
 
   handleMapClick = (ref, map, ev) => {
+    console.log(this._map);
     const location = ev.latLng;
     this.setState(prevState => ({
       locations: [...prevState.locations, location]
     }));
-    map.panTo(location);
+      this._map.panTo(location);
   };
 
   render() {
@@ -41,12 +43,17 @@ class GoogleMapContainer extends React.Component {
       <div className="map-container">
         <Map
           google={this.props.google}
+          ref={(map) => this._map = map}
           className={"map"}
           zoom={this.props.zoom}
+          zoomControlOptions= {{
+              position: window.google.maps.ControlPosition.LEFT_CENTER
+          }}
           initialCenter={this.props.center}
+          center={this.props.latlong}
           onClick={this.handleMapClick}
         >
-         <MarkersList locations={this.state.locations} icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" />
+         <MarkersList locations={JSON.parse(localStorage.getItem('markers')) ? JSON.parse(localStorage.getItem('markers')) : []} />
         </Map>
       </div>
     );
