@@ -7,7 +7,9 @@ import FirstPage from "./FirstPage"
 import ResponsiveDrawer from "./HomePage";
 
 export default class App extends React.Component {
+
     render() {
+        localStorage.clear();
         return (
             <BrowserRouter>
                 <Route

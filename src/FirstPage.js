@@ -1,11 +1,21 @@
 import React, {Component} from 'react'
-import {ListAltRounded, MenuRounded} from "@material-ui/icons";
-import {Fab, TextField, Typography} from '@material-ui/core';
+import {Fab, TextField} from '@material-ui/core';
 import GoogleMapContainer from "./GoogleMap";
 
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
+import ResponsiveDrawer from "./HomePage";
+import {withStyles} from '@material-ui/core/styles';
 
-export default class FirstPage extends Component {
+const useStyles = theme => ({
+    map: {
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - ${240}px) !important`,
+            height: '100px'
+        },
+    }
+});
+
+class FirstPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,11 +23,40 @@ export default class FirstPage extends Component {
         };
     }
 
+    componentWillMount() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                let currentLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                this.setState({
+                    currentLocation: currentLocation
+                });
+            });
+        }
+    }
+
+    componentWillUpdate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                let currentLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                this.setState({
+                    currentLocation: currentLocation
+                });
+            });
+        }
+    }
+
     componentDidMount() {
         const refs = {};
 
         this.setState({
             places: [],
+            currentLocation: { lat: -1.2884, lng:36.8233 },
             searchText: '',
             error: null,
             onSearchBoxMounted: ref => {
@@ -55,43 +94,59 @@ export default class FirstPage extends Component {
                 });
             }
         });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                let currentLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                this.setState({
+                    currentLocation: currentLocation
+                });
+            });
+        }
     }
 
     render() {
-
+        const { classes } = this.props;
         return (
-            <div>
-                <div className="header-2">
-                    <MenuRounded fontSize="large" color="action" style={{ verticalAlign: 'center', color: 'white' }} />
-                    <Typography
-                        style={{ textAlign: "center", width: "fit-content", marginLeft: "auto", marginRight: "auto", color: 'white' }}
-                        variant="h5" color="textSecondary">
-                        <b>LOGO</b>
-                    </Typography>
-                    <ListAltRounded fontSize="large" color="action" style={{ verticalAlign: 'center', color: 'white' }} />
+            <ResponsiveDrawer>
+                <div>
+                    {/*<div className="header-2">*/}
+                    {/*<MenuRounded fontSize="large" color="action" style={{ verticalAlign: 'center', color: 'white' }} />*/}
+                    {/*<Typography*/}
+                    {/*style={{ textAlign: "center", width: "fit-content", marginLeft: "auto", marginRight: "auto", color: 'white' }}*/}
+                    {/*variant="h5" color="textSecondary">*/}
+                    {/*<b>LOGO</b>*/}
+                    {/*</Typography>*/}
+                    {/*<ListAltRounded fontSize="large" color="action" style={{ verticalAlign: 'center', color: 'white' }} />*/}
+                    {/*</div>*/}
+                    <div data-standalone-searchbox="">
+                        <StandaloneSearchBox
+                            ref={this.state.onSearchBoxMounted}
+                            onPlacesChanged={this.state.onPlacesChanged}
+                            bounds={this.state.boundSearch}
+                        >
+                            <TextField style={{width:"100%",zIndex:"10",borderRadius:"15px"}} fullWidth placeholder="Search"
+                            />
+                        </StandaloneSearchBox>
+                    </div>
+                    <div className="googleMap" style={{width: '100%', height: '100%'}}>
+                        <GoogleMapContainer center={this.state.currentLocation} zoom={11} latlong={this.state.latlong} />
+                    </div>
+                    <div className={classes.map} style={{position: 'fixed', width: '100%', height: '50px', bottom: '20px'}}>
+                        <div style={{ marginLeft: "auto",marginRight:"auto",width:"fit-content"}}>
+                            <Fab variant="extended" href="/sp"
+                                 style={{ backgroundColor: "red", color: 'white', fontSize: "12px"}}>
+                                POST YOUR AD
+                            </Fab>
+                        </div>
+                    </div>
                 </div>
-                <div data-standalone-searchbox="">
-                    <StandaloneSearchBox
-                        ref={this.state.onSearchBoxMounted}
-                        onPlacesChanged={this.state.onPlacesChanged}
-                        bounds={this.state.boundSearch}
-                    >
-                        <TextField style={{width:"100%",zIndex:"10",borderRadius:"15px"}} fullWidth placeholder="Search"
-                        />
-                    </StandaloneSearchBox>
-                </div>
-                <div className="googleMap" style={{width: '100%', height: '100%'}}>
-                    <GoogleMapContainer center={{ lat: -1.2884, lng:36.8233 }} zoom={11} latlong={this.state.latlong} />
-                </div>
-                <div style={{position: 'fixed', width: '100%', height: '50px', bottom: '20px'}}>
-                <div style={{ marginLeft: "auto",marginRight:"auto",width:"fit-content"}}>
-                    <Fab variant="extended" href="/home"
-                        style={{ backgroundColor: "red", color: 'white', fontSize: "12px"}}>
-                        POST YOUR AD
-                     </Fab>
-                 </div>
-                </div>
-            </div>
+            </ResponsiveDrawer>
         )
     }
 }
+
+export default  withStyles(useStyles)(FirstPage);
