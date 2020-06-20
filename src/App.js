@@ -9,7 +9,11 @@ import ResponsiveDrawer from "./HomePage";
 export default class App extends React.Component {
 
     render() {
-        localStorage.clear();
+        if (localStorage.getItem('context') && localStorage.getItem('context') !== undefined && localStorage.getItem('context') !== 'undefined') {
+            // TODO: check later
+        } else {
+            localStorage.setItem('context', 'Properties');
+        }
         return (
             <BrowserRouter>
                 <Route
@@ -21,11 +25,6 @@ export default class App extends React.Component {
                     path="/"
                     exact
                     render={(props) => <FirstPage {...props} />}
-                />
-                <Route
-                    path="/home"
-                    exact
-                    render={() => <ResponsiveDrawer />}
                 />
             </BrowserRouter>
         )

@@ -31,6 +31,10 @@ const MarkersList = props => {
     );
 };
 
+const getCoordinatesForContext = () => {
+
+}
+
 class GoogleMapContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -38,21 +42,10 @@ class GoogleMapContainer extends React.Component {
         this.state = {
             locations: []
         };
-        this.handleMapClick = this.handleMapClick.bind(this);
     }
 
-    handleMapClick = (ref, map, ev) => {
-        console.log(this._map);
-        const location = ev.latLng;
-        this.setState(prevState => ({
-            locations: [...prevState.locations, location]
-        }));
-        this._map.panTo(location);
-    };
-
     render() {
-        const { classes } = this.props;
-        console.log(classes);
+        const {classes} = this.props;
         return (
             <div className="map-container">
                 <Map
@@ -60,14 +53,14 @@ class GoogleMapContainer extends React.Component {
                     ref={(map) => this._map = map}
                     className={classes.map}
                     zoom={this.props.zoom}
-                    zoomControlOptions= {{
+                    zoomControlOptions={{
                         position: window.google.maps.ControlPosition.LEFT_CENTER
                     }}
                     initialCenter={this.props.center}
                     center={this.props.latlong}
-                    onClick={this.handleMapClick}
                 >
-                    <MarkersList locations={JSON.parse(localStorage.getItem(localStorage.getItem('context'))) ? JSON.parse(localStorage.getItem(localStorage.getItem('context'))) : []} />
+                    <MarkersList
+                        locations={localStorage.getItem(localStorage.getItem('context')) ? JSON.parse(localStorage.getItem(localStorage.getItem('context'))) : []}/>
                 </Map>
             </div>
         );
@@ -75,6 +68,6 @@ class GoogleMapContainer extends React.Component {
 }
 
 export default  withStyles(useStyles)(GoogleApiWrapper({
-    apiKey: "AIzaSyCIhrd4pSUGkVbBXJKKypkzbMQ1GDnQ-58",
+    apiKey: "API_KEY",
     libraries: []
 })(GoogleMapContainer));
