@@ -161,7 +161,7 @@ export default class SecondPage extends Component {
                             <Link to="/">
                                 <Button
                                     variant="contained"
-                                    style={{ verticalAlign: 'center', marginLeft: '9px', textAlign: "center", backgroundColor: 'red', color: 'white' }}
+                                    style={{ width: '125px', verticalAlign: 'center', marginLeft: '9px', textAlign: "center", backgroundColor: 'red', color: 'white' }}
                                     type="button"
                                     onClick={() => {
                                         console.log(pls.latlong);

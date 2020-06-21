@@ -6,6 +6,8 @@ import StandaloneSearchBox from 'react-google-maps/lib/components/places/Standal
 import ResponsiveDrawer from "./HomePage";
 import {withStyles} from '@material-ui/core/styles';
 
+import MyContext from './MyContext';
+
 const useStyles = theme => ({
     dynamicWidthPostButton: {
         [theme.breakpoints.up('sm')]: {
@@ -18,9 +20,11 @@ const useStyles = theme => ({
 class FirstPage extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             ...props
         };
+
     }
 
     // componentWillMount() {
@@ -73,6 +77,7 @@ class FirstPage extends Component {
         const refs = {};
 
         this.setState({
+            context: localStorage.getItem('context') ? localStorage.getItem('context') : 'Properties',
             places: [],
             searchText: '',
             error: null,
@@ -110,47 +115,38 @@ class FirstPage extends Component {
         });
     }
 
-    stanaloneSearcBox = () => {
-        console.log(this.state);
+    stanaloneSearcBox = (con) => {
+        console.log(con);
         return (
             <StandaloneSearchBox
                 ref={this.state.onSearchBoxMounted}
                 onPlacesChanged={this.state.onPlacesChanged}
                 bounds={this.state.boundSearch}
             >
-                <TextField style={{width:"100%",zIndex:"10",borderRadius:"15px"}} fullWidth placeholder="Search"
+                <TextField id="mapSuggestionSearchTextField" style={{width:"100%",zIndex:"10",borderRadius:"15px"}} fullWidth placeholder={'Search '+con.context+' Category'}
                 />
             </StandaloneSearchBox>
         );
     };
 
     render() {
-        // if (navigator.geolocation) {
-        //     navigator.geolocation.getCurrentPosition((position) => {
-        //         this.setState(prevState => ({
-        //             currentLocation: {
-        //                 ...prevState.currentLocation,
-        //                 lat: position.coords.latitude,
-        //                 lng: position.coords.longitude
-        //             }
-        //         }));
-        //         this.setState(prevState => ({
-        //             latlong: {
-        //                 ...prevState.latlong,
-        //                 lat: position.coords.latitude,
-        //                 lng: position.coords.longitude
-        //             }
-        //         }));
-        //         console.log(this.state.currentLocation);
-        //     });
-        // }
         const {classes} = this.props;
         return (
-            <ResponsiveDrawer>
-                <div>
+            <ResponsiveDrawer ref={this.test}>
+                <div key="firstPageMap">
                     <div data-standalone-searchbox="">
-                        {this.stanaloneSearcBox()}
+                        <MyContext.Consumer>
+                            {(con) => this.stanaloneSearcBox(con)}
+                        </MyContext.Consumer>
                     </div>
+                    {/*<div className={classes.dynamicWidthPostButton} style={{width: '100%', position: 'fixed', height: '50px', top: '107px', 'z-index': '14'}}>*/}
+                        {/*<div style={{ marginLeft: "auto",marginRight:"auto",width:"fit-content"}}>*/}
+                            {/*<Fab variant="extended" href="/sp"*/}
+                                 {/*style={{ backgroundColor: "rgba(0, 0, 0, .5)", color: 'white', fontSize: "12px"}}>*/}
+                                {/*POST YOUR AD*/}
+                            {/*</Fab>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
                     <div key={this.state.latlong} className="googleMap" style={{width: '100%', height: '100%'}}>
                         <GoogleMapContainer center={this.state.latlong} zoom={11} latlong={this.state.latlong} />
                     </div>

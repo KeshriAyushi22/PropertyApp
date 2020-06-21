@@ -14,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 
+import MyContext from './MyContext';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +60,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
+    console.log(props.children);
+
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -164,7 +168,9 @@ function ResponsiveDrawer(props) {
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <div key={context}>
-                    {context ? props.children : null}
+                    <MyContext.Provider value={{ context }}>
+                        {context ? props.children : null}
+                    </MyContext.Provider>
                 </div>
             </main>
         </div>

@@ -38,6 +38,11 @@
     margin-top: -7px !important;
 }
 
+#mapSuggestionSearchTextField {
+    height: 34px;
+    padding-left: 10px;
+}
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);
