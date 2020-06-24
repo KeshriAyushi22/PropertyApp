@@ -1,10 +1,16 @@
 import React, {Component} from 'react'
-import {Fab, TextField} from '@material-ui/core';
+import {Fab, TextField, Drawer} from '@material-ui/core';
 import GoogleMapContainer from "./GoogleMap";
 
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import ResponsiveDrawer from "./HomePage";
 import {withStyles} from '@material-ui/core/styles';
+
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 import MyContext from './MyContext';
 
@@ -14,17 +20,74 @@ const useStyles = theme => ({
             width: `calc(100% - ${240}px) !important`,
             height: '100px'
         },
+    },
+    bottomDrawerRoot: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+        width: '100%'
+    },
+    bottomDrawerGridList: {
+        flexWrap: 'nowrap',
+        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+        transform: 'translateZ(0)',
+        width: '100%'
+    },
+    bottomDrawerTitle: {
+        color: '#FFF',
+    },
+    bottomDrawerTitleBar: {
+        background:
+            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     }
 });
+
+const tileData = [
+    {
+        img: 'https://ca-times.brightspotcdn.com/dims4/default/0175a6e/2147483647/strip/true/crop/1080x607+0+0/resize/840x472!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F62%2Fb2%2F272fb3f14c38f7d8d538be5577d5%2Fla-fi-hotprop-lindsey-buckingham-brentwood-hou-003',
+        title: 'Property 1',
+        author: 'author',
+    },
+    {
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWONWDD91wNFheg2bBHhn54JHZkQAxPxZvlQ&usqp=CAU',
+        title: 'Property 2',
+        author: 'author',
+    },
+    {
+        img: 'https://bloximages.newyork1.vip.townnews.com/fredericknewspost.com/content/tncms/assets/v3/editorial/1/af/1af57833-200f-5e56-ab5a-6f651279851b/5d29032ff2a4d.image.jpg?resize=1200%2C800',
+        title: 'Property 3',
+        author: 'author',
+    },
+    {
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlG73oAPz0r8DA7Rier-k8CUkqjLrc8wK78A&usqp=CAU',
+        title: 'Property 4',
+        author: 'author',
+    },
+];
 
 class FirstPage extends Component {
     constructor(props) {
         super(props);
         console.log(props);
-        this.state = {
-            ...props
-        };
 
+        // this.bottomDrawer = {
+        //     ...props,
+        //     open: false
+        // };
+        this.state = {
+            ...props,
+            openBottomDrawer: false
+        };
+        this.updateBottomDrawer = this.updateBottomDrawer.bind(this)
+    }
+
+    updateBottomDrawer(latlng){
+        console.log(latlng);
+        if (latlng) {
+            this.setState({openBottomDrawer :true});
+        }
     }
 
     // componentWillMount() {
@@ -148,7 +211,7 @@ class FirstPage extends Component {
                         {/*</div>*/}
                     {/*</div>*/}
                     <div key={this.state.latlong} className="googleMap" style={{width: '100%', height: '100%'}}>
-                        <GoogleMapContainer center={this.state.latlong} zoom={11} latlong={this.state.latlong} />
+                        <GoogleMapContainer center={this.state.latlong} zoom={11} latlong={this.state.latlong} onClickMarker={(latlng) => this.updateBottomDrawer(latlng)} />
                     </div>
                     <div className={classes.dynamicWidthPostButton} style={{width: '100%', position: 'fixed', height: '50px', bottom: '20px'}}>
                         <div style={{ marginLeft: "auto",marginRight:"auto",width:"fit-content"}}>
@@ -157,6 +220,31 @@ class FirstPage extends Component {
                                 POST YOUR AD
                             </Fab>
                         </div>
+                    </div>
+                    <div style={{display: this.state.openBottomDrawer ? 'block' : 'none'}}>
+                        <Drawer anchor='bottom' open={this.state.openBottomDrawer} onClose={() => this.setState({openBottomDrawer: false})}>
+                            <div className={classes.bottomDrawerRoot}>
+                                <GridList className={classes.bottomDrawerGridList} cols={2.5}>
+                                    {tileData.map((tile) => (
+                                        <GridListTile key={tile.img} onClick={() => console.log('here')}>
+                                            <img src={tile.img} alt={tile.title} />
+                                            <GridListTileBar
+                                                title={tile.title}
+                                                classes={{
+                                                    root: classes.bottomDrawerTitleBar,
+                                                    title: classes.bottomDrawerTitle,
+                                                }}
+                                                actionIcon={
+                                                    <IconButton aria-label={`star ${tile.title}`}>
+                                                        <StarBorderIcon className={classes.bottomDrawerTitle} />
+                                                    </IconButton>
+                                                }
+                                            />
+                                        </GridListTile>
+                                    ))}
+                                </GridList>
+                            </div>
+                        </Drawer>
                     </div>
                 </div>
             </ResponsiveDrawer>
