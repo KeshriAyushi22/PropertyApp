@@ -1,6 +1,6 @@
 /* global google */
 import React from "react";
-import './App.css';
+import '../css/App.css';
 import {GoogleApiWrapper, Map, Marker} from "google-maps-react";
 import {withStyles} from '@material-ui/core/styles';
 

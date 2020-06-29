@@ -1,10 +1,10 @@
 import React from 'react';
 import Route from 'react-router-dom/Route';
 import { BrowserRouter } from 'react-router-dom';
-import './App.css';
-import SecondPage from "./SecondPage"
-import FirstPage from "./FirstPage"
-import ResponsiveDrawer from "./HomePage";
+import './css/App.css';
+import SecondPage from "./components/SecondPage"
+import FirstPage from "./components/FirstPage"
+import ResponsiveDrawer from "./components/HomePage";
 
 export default class App extends React.Component {
 

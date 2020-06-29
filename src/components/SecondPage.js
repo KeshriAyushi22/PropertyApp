@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './App.css'
+import '../css/App.css'
 import {PhotoLibrary} from "@material-ui/icons";
 import {Button, TextField, Typography} from '@material-ui/core';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
