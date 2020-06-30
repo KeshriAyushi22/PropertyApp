@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './css/App.css';
 import SecondPage from "./components/SecondPage"
 import FirstPage from "./components/FirstPage"
-import ResponsiveDrawer from "./components/HomePage";
+import GridData from "./components/GridData";
 
 export default class App extends React.Component {
 
@@ -25,6 +25,12 @@ export default class App extends React.Component {
                     path="/"
                     exact
                     render={(props) => <FirstPage {...props} />}
+                />
+
+                <Route
+                    path="/property/:id/desc"
+                    exact
+                    render={(props) => <GridData {...props} />}
                 />
             </BrowserRouter>
         )

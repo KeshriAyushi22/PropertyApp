@@ -173,6 +173,14 @@ class FirstPage extends Component {
         );
     };
 
+    onClickTile=(tile)=>{
+        this.props.history.push
+        ({
+            pathname: "/property/"+tile.id+"/desc",
+            state: { tile }
+          })
+    }
+
     render() {
         const {classes} = this.props;
         return (
@@ -183,14 +191,6 @@ class FirstPage extends Component {
                             {(con) => this.stanaloneSearcBox(con)}
                         </MyContext.Consumer>
                     </div>
-                    {/*<div className={classes.dynamicWidthPostButton} style={{width: '100%', position: 'fixed', height: '50px', top: '107px', 'z-index': '14'}}>*/}
-                        {/*<div style={{ marginLeft: "auto",marginRight:"auto",width:"fit-content"}}>*/}
-                            {/*<Fab variant="extended" href="/sp"*/}
-                                 {/*style={{ backgroundColor: "rgba(0, 0, 0, .5)", color: 'white', fontSize: "12px"}}>*/}
-                                {/*POST YOUR AD*/}
-                            {/*</Fab>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
                     <div key={this.state.latlong} className="googleMap" style={{width: '100%', height: '100%'}}>
                         <GoogleMapContainer center={this.state.latlong} zoom={11} latlong={this.state.latlong} onClickMarker={(latlng) => this.updateBottomDrawer(latlng)} />
                     </div>
@@ -207,7 +207,7 @@ class FirstPage extends Component {
                             <div className={classes.bottomDrawerRoot}>
                                 <GridList className={classes.bottomDrawerGridList} cols={2.5}>
                                     {tileData.map((tile) => (
-                                        <GridListTile key={tile.img} onClick={() => console.log('here')}>
+                                        <GridListTile key={tile.img} onClick={() => this.onClickTile(tile)}>
                                             <img src={tile.img} alt={tile.title} />
                                             <GridListTileBar
                                                 title={tile.title}
