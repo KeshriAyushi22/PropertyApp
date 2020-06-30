@@ -36,3 +36,11 @@
 .carousel{
     height: 150px;
 }
+
+.MuiCardActions-root{
+    margin-left: auto !important;
+}
+
+.MuiCardActions-root>.MuiIconButton-root{
+    padding:0px !important;
+}
