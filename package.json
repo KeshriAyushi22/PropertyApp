@@ -17,10 +17,9 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-google-maps": "9.4.3",
-    "react-material-ui-carousel": "^1.6.0",
-    "react-responsive-carousel": "^3.2.9",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
+    "react-simple-image-slider": "^1.0.4",
     "recompose": "0.26.0"
   },
   "scripts": {
