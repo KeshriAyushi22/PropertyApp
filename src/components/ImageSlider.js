@@ -1,7 +1,18 @@
 import SimpleImageSlider from "react-simple-image-slider";
 import React, { Component } from 'react'
+import {withStyles} from '@material-ui/core/styles';
 
-export default class ImageSlider extends React.Component {
+const useStyles = theme => ({
+    root: {
+        width:'1400',
+        [theme.breakpoints.down('sm')]: {
+            width: `100% !important`
+        },
+    },
+   
+});
+
+ class ImageSlider extends React.Component {
     constructor(props){
         super(props)
         this.state={
@@ -9,10 +20,11 @@ export default class ImageSlider extends React.Component {
         }
     }
     render() {
+        const {classes} = this.props;
         return (
-            <div>
-                <SimpleImageSlider
-                    width={1300}
+            <div className={classes.root}>
+                <SimpleImageSlider 
+                    width={classes.root.width}
                     height={300}
                     images={this.state.tile.propertyImage}
                     style={{padding:"10px",margin:"5px 10px"}}
@@ -21,3 +33,4 @@ export default class ImageSlider extends React.Component {
         );
     }
 }
+export default  withStyles(useStyles)(ImageSlider);

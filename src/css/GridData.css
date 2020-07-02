@@ -1,41 +1,6 @@
-.dataGrid{
-    display: flex;
-    height: 300px;
-    padding: 20px;
-    margin-top: 30px;
 
-}
 
-.contactGrid{
-    width: 30%;
-    padding: 30px;
-    margin: 0px 10px 10px 20px;
-}
 
-.priceGrid{
-    width: 70%;
-    padding: 30px;
-    margin: 0px 10px 10px 10px;
-}
-/* .breadcrumb{
-    height: 35px;
-    padding: 10px;
-   
-} */
-/* .address{
-   
-    height: 45px;
-    display: flex;
-    text-align: center;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-    font-size: large;
-} */
-.carousel{
-    height: 100px;
-}
 
 .MuiCardActions-root{
     margin-left: auto !important;
@@ -61,23 +26,3 @@
     margin: 5px 15px;
 }
 
-@media only screen and (max-width: 700px) {
-    .address {
-        width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .dataGrid{
-        display: inline-grid;
-        height: 466px;
-    }
-    .contactGrid{
-    width: 65%;
-    padding: 30px;
-    margin: 0px 10px 10px 10px;
-    }
-    .priceGrid{
-        width: 65%;
-       
-    }
-  }

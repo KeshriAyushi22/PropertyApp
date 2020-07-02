@@ -6,23 +6,19 @@ import { activeLastBreadcrumb } from "../services/util"
 import PropertyDetail from "./PropertyDetail";
 import ImageSlider from "./ImageSlider"
 import ContactDetail from "./ContactDetail"
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = theme => ({
     root: {
         [theme.breakpoints.up('sm')]: {
-            address:{
-            width: `calc(100% - ${240}px) !important`,
-            marginLeft: 'auto',
-            marginRight: 'auto'
-            }
+           
         },
     },
     breadcrumb: {
         height: '35px',
         padding: '10px'
     },
-    address:{
+    address: {
         height: '45px',
         display: 'flex',
         textAlign: 'center',
@@ -31,16 +27,48 @@ const useStyles = theme => ({
         marginRight: 'auto',
         padding: '10px',
         fontSize: 'large',
+        [theme.breakpoints.down('sm')]: {
+            width: `fit-content !important`,
+            marginLeft: 'auto',
+            marginRight: 'auto'
+        }
     },
-    bottomDrawerTitle: {
-        color: '#FFF',
+    dataGrid: {
+        display: 'flex',
+        height: '300px',
+        padding: '20px',
+        marginTop: '30px',
+        [theme.breakpoints.down('sm')]: {
+            width: `100% !important`,
+            display: 'inline-grid',
+            height: '466px'
+        }
+
     },
-    bottomDrawerTitleBar: {
-        background:
-            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+
+    contactGrid: {
+        width: '30%',
+        padding: '30px',
+        margin: '0px 10px 10px 20px',
+        [theme.breakpoints.down('sm')]: {
+            width: `100% !important`,
+            padding: '30px',
+            margin: '0px 10px 10px 10px',
+        }
+    },
+    priceGrid: {
+        width: '70%',
+        padding: '30px',
+        margin: '0px 10px 10px 10px',
+        [theme.breakpoints.down('sm')]: {
+            width: `100% !important`,
+
+        }
     }
 });
- class GridData extends Component {
+
+
+class GridData extends Component {
 
     constructor(props) {
         super(props);
@@ -57,31 +85,31 @@ const useStyles = theme => ({
 
 
     render() {
-        const {classes} = this.props;
+        const { classes } = this.props;
         return (
 
             <ResponsiveDrawer ref={this.test}>
                 <div className={classes.root}>
-                <div className={classes.breadcrumb}>
-                    {activeLastBreadcrumb(["Home", this.state.tile.title, ""], this.handleClick)}
-                </div>
+                    <div className={classes.breadcrumb}>
+                        {activeLastBreadcrumb(["Home", this.state.tile.title, ""], this.handleClick)}
+                    </div>
 
-                <div className={classes.address}>{this.state.tile.title}</div>
-                <div className="carousel">
-                    <ImageSlider {...this.props} />
+                    <div className={classes.address}>{this.state.tile.title}</div>
+                    <div className="carousel">
+                        <ImageSlider {...this.props} />
+                    </div>
+                    <div className={classes.dataGrid}>
+                        <Card className={classes.priceGrid}>
+                            <PropertyDetail tile={this.state.tile} />
+                        </Card >
+                        <Card className={classes.contactGrid}>
+                            <ContactDetail tile={this.state.tile} />
+                        </Card >
+                    </div >
                 </div>
-                <div className="dataGrid">
-                    <Card className="priceGrid">
-                        <PropertyDetail tile={this.state.tile} />
-                    </Card >
-                    <Card className="contactGrid">
-                        <ContactDetail tile={this.state.tile}/>
-                    </Card >
-                </div >
-</div>
             </ResponsiveDrawer>
         )
     }
 }
 
-export default  withStyles(useStyles)(GridData);
+export default withStyles(useStyles)(GridData);
