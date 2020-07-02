@@ -24,10 +24,10 @@ const useStyles = theme => ({
         return (
             <div className={classes.root}>
                 <SimpleImageSlider 
-                    width={classes.root.width}
+                    width={'100%'}
                     height={300}
                     images={this.state.tile.propertyImage}
-                    style={{padding:"10px",margin:"5px 10px"}}
+                    style={{padding:"0px",margin:"0px 0px"}}
                 />
             </div>
         );
