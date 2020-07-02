@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Typography, CardContent, CardActions, IconButton } from '@material-ui/core';
 import { Favorite, LocalHotel, Bathtub, Home } from '@material-ui/icons';
 import "../css/GridData.css"
+import "../css/PropertyDetail.css"
 import { Paper } from "@material-ui/core";
 
 export default class PropertyDetail extends Component {
@@ -16,7 +17,7 @@ export default class PropertyDetail extends Component {
 
         return (
             <React.Fragment>
-                <div style={{ display: "flex" }}>
+                <div className="property-detail">
                     <Typography variant="h4">
                         {tile.price}
                     </Typography>
@@ -26,27 +27,27 @@ export default class PropertyDetail extends Component {
                         </IconButton>
                     </CardActions>
                 </div>
-                <CardContent style={{ display: "flex" }}>
+                <CardContent className="card-content" >
                     <Typography variant="body2" color="textSecondary" component="p" style={{ width: "35%" }}>
                         {tile.address}
                     </Typography>
-                    <div style={{ display: "flex", width: "fit-content", margin: "10px", marginLeft: "auto" }}>
-                        <div style={{ display: "grid", margin: "10px"}}>
-                        <Paper elevation={0} style={{ display: "flex", margin: "10px", fontSize: "20px" }}>
+                    <div className="card-content-property-div">
+                        <div className="property-desc" >
+                        <Paper className="paper-display" elevation={0} >
                             {tile.count.bedroom}
                             <LocalHotel />  
                         </Paper>
                         <div>Bedroom</div>
                         </div>
-                        <div style={{ display: "grid", margin: "10px"}}>
-                        <Paper elevation={0} style={{ display: "flex", margin: "10px", fontSize: "20px" }}>
+                        <div className="property-desc" >
+                        <Paper  className="paper-display" elevation={0} >
                             {tile.count.bathroom}
                             <Bathtub />
                         </Paper>
                         <div>Bathroom</div>
                         </div>
-                        <div style={{ display: "grid", margin: "10px"}}>
-                        <Paper elevation={0} style={{ display: "flex", margin: "10px", fontSize: "20px" }}>
+                        <div className="property-desc" >
+                        <Paper className="paper-display" elevation={0} >
                             <Home />
                         </Paper>
                         <div>Single Family</div>
