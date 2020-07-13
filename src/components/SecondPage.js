@@ -5,26 +5,21 @@ import {Button, TextField, Typography} from '@material-ui/core';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import {Link} from "react-router-dom";
 import ResponsiveDrawer from "./HomePage";
+import {createPropertyDetail} from "../services/react_api"
 
 export default class SecondPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ...props
+            ...props,
+            propTitle:"",
+            propdesc:"",
+            image:"",
+            address:""
         };
     }
 
-    componentDidUpdate(prevProps) {
-        // console.log('ComponentDidUpdate');
-        // // console.log(this.state);
-        // // console.log(prevProps);
-        // // console.log(this.props);
-        // // // this.setState({context: this.props.context});
-        // // console.log(this.state);
-        // this.context = this.props.context;
-        // console.log(this.context);
-    }
-
+  
     componentDidMount() {
         this.context = localStorage.getItem('context') ? localStorage.getItem('context') : 'Properties';
         console.log(this.context);
@@ -76,6 +71,14 @@ export default class SecondPage extends Component {
     handleChange = event => {
         const fileUploaded = event.target.files[0];
         // props.handleFile(fileUploaded);
+        console.log(fileUploaded)
+        var reader = new FileReader();
+    reader.onload = function(){
+      var dataURL = reader.result;
+     console.log(dataURL)
+    };
+    reader.readAsDataURL(fileUploaded);
+    console.log(fileUploaded)
     };
 
     containsObject(obj, list) {
@@ -89,7 +92,7 @@ export default class SecondPage extends Component {
     }
 
     render() {
-        // console.log(this.state);
+      
         const pls = this.state;
         return (
             <ResponsiveDrawer>
@@ -124,20 +127,21 @@ export default class SecondPage extends Component {
                                     onPlacesChanged={this.state.onPlacesChanged}
                                     bounds={this.state.boundSearch}
                                 >
-                                    <TextField
+                                    <TextField id="address"
                                         label="Property Address" fullWidth placeholder="Canada Street 555" InputLabelProps={{ shrink: true }}
+                                        onChange={(event)=>this.setState({[event.target.id]:event.target.value})}
                                     />
                                 </StandaloneSearchBox>
                             </div>
                         </div>
                         <div style={{margin: "15px", marginTop: "50px"}}>
                             <TextField
-                                id="propTtile"
+                                id="propTitle"
                                 label="Property Title"
                                 placeholder="Your property title"
-                                name="propTtile"
+                                name="propTitle"
                                 type="text"
-                                onChange={(event) => console.log(event.target.value)}
+                                onChange={(event) =>this.setState({[event.target.id]:event.target.value})}
                                 fullWidth
                                 InputLabelProps={{ shrink: true }}
                             />
@@ -149,7 +153,7 @@ export default class SecondPage extends Component {
                                 placeholder="Enter any notes here ..."
                                 name="propdesc"
                                 type="text"
-                                onChange={(event) => console.log(event.target.value)}
+                                onChange={(event) => this.setState({[event.target.id]:event.target.value})}
                                 fullWidth
                                 InputLabelProps={{ shrink: true }}
                                 multiline
@@ -164,6 +168,13 @@ export default class SecondPage extends Component {
                                     style={{ width: '125px', verticalAlign: 'center', marginLeft: '9px', textAlign: "center", backgroundColor: 'red', color: 'white' }}
                                     type="button"
                                     onClick={() => {
+                                        const objReq={}
+                                        objReq["address"]=this.state.address
+                                        objReq["desc"]=this.state.propdesc
+                                        objReq["title"]=this.state.propTitle
+                                        objReq["image"] =this.state.image
+                                        console.log(objReq)
+                                        createPropertyDetail(objReq);
                                         console.log(pls.latlong);
                                         if (pls.latlong) {
                                             var tempMarker = localStorage.getItem(localStorage.getItem('context')) ? JSON.parse(localStorage.getItem(localStorage.getItem('context'))) : [];
