@@ -14,13 +14,13 @@ export const tileData = [
             bathroom : 1
         },
         propertyImage:[
-            { url: "home-real-estate-106399.jpg" },
-            { url: "src\assets\living-room-couch-interior-room-584399.jpeg" },
-            { url: "images/3.jpg" },
-            { url: "images/4.jpg" },
-            { url: "images/5.jpg" },
-            { url: "images/6.jpg" },
-            { url: "images/7.jpg" }
+            { url: "https://images.moneycontrol.com/static-mcnews/2017/05/real-estate-Luxury-home-770x433.jpg?impolicy=website&width=770&height=431" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR_t1fQ61vDi-O4wSMtLt3n86r6O6PYDXpLDw&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXPARLtmwiTn25MDi_P2kocfQeftgsSW_ziQ&usqp=CAU" },
+            { url: "https://media1.s-nbcnews.com/j/newscms/2018_30/1355945/home-exterior-today-180726-tease_3f99937c609d875fece6a12af1594bd9.fit-760w.jpg" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQIfK3oxyKO5I1l_zA0EYrLn6QJUiIt-NMO6A&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSRCHKQ79NbvebbIkr2dCiFy4cMrN-CjLxA6w&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4P8KNTtOfCezNL_rIfF19027yQT63TfvSTw&usqp=CAU" }
         ]
     },
     {
@@ -36,13 +36,13 @@ export const tileData = [
             bathroom : 2
         },
         propertyImage:[
-            { url: "images/1.jpg" },
-            { url: "images/2.jpg" },
-            { url: "images/3.jpg" },
-            { url: "images/4.jpg" },
-            { url: "images/5.jpg" },
-            { url: "images/6.jpg" },
-            { url: "images/7.jpg" }
+            { url: "https://images.moneycontrol.com/static-mcnews/2017/05/real-estate-Luxury-home-770x433.jpg?impolicy=website&width=770&height=431" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR_t1fQ61vDi-O4wSMtLt3n86r6O6PYDXpLDw&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXPARLtmwiTn25MDi_P2kocfQeftgsSW_ziQ&usqp=CAU" },
+            { url: "https://media1.s-nbcnews.com/j/newscms/2018_30/1355945/home-exterior-today-180726-tease_3f99937c609d875fece6a12af1594bd9.fit-760w.jpg" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQIfK3oxyKO5I1l_zA0EYrLn6QJUiIt-NMO6A&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSRCHKQ79NbvebbIkr2dCiFy4cMrN-CjLxA6w&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4P8KNTtOfCezNL_rIfF19027yQT63TfvSTw&usqp=CAU" }
         ]
     },
     {
@@ -58,13 +58,13 @@ export const tileData = [
             bathroom : 3
         },
         propertyImage:[
-            { url: "https://www.pexels.com/photo/home-real-estate-106399/" },
-            { url: "images/2.jpg" },
-            { url: "images/3.jpg" },
-            { url: "images/4.jpg" },
-            { url: "images/5.jpg" },
-            { url: "images/6.jpg" },
-            { url: "images/7.jpg" }
+            { url: "https://images.moneycontrol.com/static-mcnews/2017/05/real-estate-Luxury-home-770x433.jpg?impolicy=website&width=770&height=431" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR_t1fQ61vDi-O4wSMtLt3n86r6O6PYDXpLDw&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXPARLtmwiTn25MDi_P2kocfQeftgsSW_ziQ&usqp=CAU" },
+            { url: "https://media1.s-nbcnews.com/j/newscms/2018_30/1355945/home-exterior-today-180726-tease_3f99937c609d875fece6a12af1594bd9.fit-760w.jpg" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQIfK3oxyKO5I1l_zA0EYrLn6QJUiIt-NMO6A&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSRCHKQ79NbvebbIkr2dCiFy4cMrN-CjLxA6w&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4P8KNTtOfCezNL_rIfF19027yQT63TfvSTw&usqp=CAU" }
         ]
     },
     {
@@ -80,13 +80,13 @@ export const tileData = [
             bathroom : 1
         },
         propertyImage:[
-            { url: "images/1.jpg" },
-            { url: "images/2.jpg" },
-            { url: "images/3.jpg" },
-            { url: "images/4.jpg" },
-            { url: "images/5.jpg" },
-            { url: "images/6.jpg" },
-            { url: "images/7.jpg" }
+            { url: "https://images.moneycontrol.com/static-mcnews/2017/05/real-estate-Luxury-home-770x433.jpg?impolicy=website&width=770&height=431" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR_t1fQ61vDi-O4wSMtLt3n86r6O6PYDXpLDw&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXPARLtmwiTn25MDi_P2kocfQeftgsSW_ziQ&usqp=CAU" },
+            { url: "https://media1.s-nbcnews.com/j/newscms/2018_30/1355945/home-exterior-today-180726-tease_3f99937c609d875fece6a12af1594bd9.fit-760w.jpg" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQIfK3oxyKO5I1l_zA0EYrLn6QJUiIt-NMO6A&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSRCHKQ79NbvebbIkr2dCiFy4cMrN-CjLxA6w&usqp=CAU" },
+            { url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4P8KNTtOfCezNL_rIfF19027yQT63TfvSTw&usqp=CAU" }
         ]
     },
 ];
