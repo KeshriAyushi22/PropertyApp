@@ -1,12 +1,17 @@
 const sql = require("./db.js");
 
-const PropertyDetail = function (detail) {
-    // this.id = detail.id;
+export const PropertyDetail = function (detail) {
     this.address = detail.address;
-    this.image=detail.image;
     this.desc=detail.desc;
     this.title=detail.title;
     this.created_on = new Date();
+}
+
+export const ImageDetail =function(imgDetail){
+  this.name = imgDetail.name;
+  this.created_on = new Date();
+  this.imgData=imgDetail.imgData;
+  this.details_id=imgDetail.details_id;
 }
 
 PropertyDetail.create = (newDetail, result) => {
@@ -19,6 +24,19 @@ PropertyDetail.create = (newDetail, result) => {
         console.log("created task: ", { id: res.insertId, ...newDetail });
     result(null, { id: res.insertId, ...newDetail });
     })
+
+}
+
+ImageDetail.create = (newDetail, result) => {
+  sql.query("INSERT INTO imageDetails SET ?", newDetail, (err, res) => {
+      if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+      }
+      console.log("created task: ", { id: res.insertId, ...newDetail });
+  result(null, { id: res.insertId, ...newDetail });
+  })
 
 }
 
@@ -52,4 +70,3 @@ PropertyDetail.getAll = result => {
     });
   };
 
-  module.exports = PropertyDetail;

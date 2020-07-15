@@ -1,4 +1,4 @@
-const PropertyDetail = require("../models/propApp.model.js");
+const {PropertyDetail,ImageDetail} = require("../models/propApp.model.js");
 
 
 exports.create = (req, res) => {
@@ -11,12 +11,12 @@ exports.create = (req, res) => {
 
 
     const details = new PropertyDetail({
-        // id: req.body.id,
         desc: req.body.desc,
         title:req.body.title,
         address:req.body.address,
         image:req.body.img   //array of image
     });
+
 
     // Save Data in the database
     PropertyDetail.create(details, (err, data) => {
@@ -25,7 +25,26 @@ exports.create = (req, res) => {
                 message:
                 err.message || "Some error occurred while creating the Task."
             });
-        else res.send(data);
+        else{
+               
+                req.body.imgList.forEach(item=>{
+                    //each imag data object
+                    // const imgDetail = new ImageDetail({
+                    //     name:req.body.imgList.name,
+                    //     imgData : req.body.imgList.imgData,
+                    //     details_id :data.id
+                    // })
+
+                    ImageDetail.create((imgDetail,  (err1,  data1)) =>{
+                            if(err1){
+                                //delete property detail associated
+                            }
+                           else
+                            res.send(data1);
+                    });
+                })
+            
+        } 
     });
 };
 
