@@ -1,13 +1,13 @@
 const sql = require("./db.js");
 
-export const PropertyDetail = function (detail) {
+const PropertyDetail = function (detail) {
     this.address = detail.address;
     this.desc=detail.desc;
     this.title=detail.title;
     this.created_on = new Date();
 }
 
-export const ImageDetail =function(imgDetail){
+const ImageDetail =function(imgDetail){
   this.name = imgDetail.name;
   this.created_on = new Date();
   this.imgData=imgDetail.imgData;
@@ -69,4 +69,9 @@ PropertyDetail.getAll = result => {
       result(null, res);
     });
   };
+
+module.exports = {
+  PropertyDetail,
+  ImageDetail
+}
 

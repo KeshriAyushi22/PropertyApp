@@ -1,6 +1,6 @@
 module.exports = {
-  HOST: "propertyapp.cxx476ksd5l1.ap-south-1.rds.amazonaws.com",
+  HOST: "property-app.ckjm9itiabf3.ap-south-1.rds.amazonaws.com",
   USER: "admin",
-  PASSWORD: "2HM09Q46wbcjAJSRNrUt",
-  DB: "property_app"
+  PASSWORD: "admin_property123",
+  DB: "property-app"
 };

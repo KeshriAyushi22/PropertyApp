@@ -15,7 +15,8 @@ export default class SecondPage extends Component {
             propTitle: "",
             propdesc: "",
             image: "",
-            address: ""
+            address: "",
+            imageData: null
         };
     }
 
@@ -69,16 +70,27 @@ export default class SecondPage extends Component {
         document.getElementById('hiddenFileInput').click();
     };
     handleChange = event => {
-        const fileUploaded = event.target.files[0];
+        const fileUploaded = event.target.files;
         // props.handleFile(fileUploaded);
         console.log(fileUploaded)
         var reader = new FileReader();
-        reader.onload = function () {
-            var dataURL = reader.result;
-            console.log(dataURL)
-        };
-        reader.readAsDataURL(fileUploaded);
-        console.log(fileUploaded)
+        var data = new FormData();
+
+        for (var i = 0; i < fileUploaded.length; i++) {
+            let file = fileUploaded[i];
+            console.log(file);
+            data.append('file', file, file.name);
+        }
+
+        // reader.onload = function () {
+        //     var dataURL = reader.result;
+        //     console.log(dataURL)
+        // };
+        // reader.readAsDataURL(fileUploaded);
+        this.setState({
+            imageData: data
+        });
+        console.log(data.get('file'))
     };
 
     containsObject(obj, list) {
@@ -97,17 +109,20 @@ export default class SecondPage extends Component {
         objReq["desc"] = this.state.propdesc
         objReq["title"] = this.state.propTitle
         objReq["image"] = this.state.image
-        console.log(objReq)
-        createPropertyDetail(objReq);
-        console.log(pls.latlong);
-        if (pls.latlong) {
-            var tempMarker = localStorage.getItem(localStorage.getItem('context')) ? JSON.parse(localStorage.getItem(localStorage.getItem('context'))) : [];
-            if (!this.containsObject(pls.latlong, tempMarker)) {
-                tempMarker.push(pls.latlong);
-            }
+        objReq["imageData"] = this.state.imageData
 
-            localStorage.setItem(localStorage.getItem('context'), JSON.stringify(tempMarker));
-        }
+        console.log(objReq)
+        let dbResult = createPropertyDetail(objReq);
+        console.log(dbResult);
+        // console.log(pls.latlong);
+        // if (pls.latlong) {
+        //     var tempMarker = localStorage.getItem(localStorage.getItem('context')) ? JSON.parse(localStorage.getItem(localStorage.getItem('context'))) : [];
+        //     if (!this.containsObject(pls.latlong, tempMarker)) {
+        //         tempMarker.push(pls.latlong);
+        //     }
+
+        //     localStorage.setItem(localStorage.getItem('context'), JSON.stringify(tempMarker));
+        // }
     }
 
     render() {
@@ -135,6 +150,8 @@ export default class SecondPage extends Component {
                             id="hiddenFileInput"
                             onChange={this.handleChange}
                             style={{ display: 'none' }}
+                            multiple="multiple"
+                            accept="image/x-png,image/jpeg"
                         />
 
                     </div>
@@ -187,7 +204,7 @@ export default class SecondPage extends Component {
                                     style={{ width: '125px', verticalAlign: 'center', marginLeft: '9px', textAlign: "center", backgroundColor: 'red', color: 'white' }}
                                     type="button"
                                     onClick={() => {
-                                       this.selectImage
+                                       this.selectImage();
                                     }}
                                 >
                                     POST

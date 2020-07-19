@@ -1,4 +1,5 @@
 const {PropertyDetail,ImageDetail} = require("../models/propApp.model.js");
+const fs = require("fs");
 
 
 exports.create = (req, res) => {
@@ -26,21 +27,25 @@ exports.create = (req, res) => {
                 err.message || "Some error occurred while creating the Task."
             });
         else{
-               
-                req.body.imgList.forEach(item=>{
+                console.log(req.files);
+                
+                req.files.forEach(item=>{
                     //each imag data object
-                    // const imgDetail = new ImageDetail({
-                    //     name:req.body.imgList.name,
-                    //     imgData : req.body.imgList.imgData,
-                    //     details_id :data.id
-                    // })
+                    var imageData = fs.readFileSync(item.path);
+                    const imgDetail = new ImageDetail({
+                        name: item.originalname,
+                        imgData : imageData,
+                        details_id :data.id
+                    })
 
-                    ImageDetail.create((imgDetail,  (err1,  data1)) =>{
+                    ImageDetail.create(imgDetail,  (err1,  data1) => {
                             if(err1){
                                 //delete property detail associated
+                            } else {
+                                console.log(data1);
+                                res.status(201).send();
+                                // res.status(201).send(data1);
                             }
-                           else
-                            res.send(data1);
                     });
                 })
             
